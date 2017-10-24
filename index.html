@@ -96,6 +96,8 @@
 		with(marketingData, mean(Salary))
 		with(marketingData, sd(Salary))
 		
+		# We have used a histogram before but histogram is not the best option to compare data distribution. Here we are only exploring one variable but it would be nice to have the  to get familiar with the tools we can use in future
+		with(marketingData, plot(density(Salary)))
 	</code>
 		
     </div>
