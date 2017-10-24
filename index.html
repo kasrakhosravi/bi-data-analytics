@@ -23,9 +23,9 @@
 
     <section class="main-content">
 	    
-      <h3 id="welcome-to-github-pages">First Lecture</h3>  
+      <h4 id="welcome-to-github-pages">First Lecture</h4>  
 	    
-    <h4 id="welcome-to-github-pages">General Data Exploration</h4>   
+    <h5 id="welcome-to-github-pages">General Data Exploration</h5>   
 	    
       <p style='font-size: 14px'>
 	It is crucial to examine waht kind of object we are working with in R. It turns out
@@ -61,7 +61,7 @@
 		
     </div>
 	      
- <h4 id="welcome-to-github-pages">Exploring One variable</h4>   
+ <h5 id="welcome-to-github-pages">Exploring One variable</h5>   
 	    
       <p style='font-size: 14px'>
 	It is crucial to examine waht kind of object we are working with in R. It turns out
@@ -85,13 +85,15 @@
 	</code>
 		
 	<code data-type="sample-code">
-		# We can explore the summary statistics of a single variable in a dataset which
-		# will give us values like min and max numbers, mean, median, etc.
+		# We can explore the summary statistics of a single variable in a dataset which will give us values like min and max numbers, mean, median, etc.
 		with(marketingData, summary(Salary))
 		
-		# Also it is possible to draw a histogram based on a single variable. It shows us
-		# a general overview about the distribution of the variable values
+		# Also it is possible to draw a histogram based on a single variable. It shows us a general overview about the distribution of the variable values
 		with(marketingData, hist(Salary))
+		
+		# Imagine that we only need the mean and standard deviation for a single variable in a dataset. R will allow us to get it fast and easy :)
+		with(marketingData, mean(Salary))
+		with(marketingData, sd(Salary))
 		
 	</code>
 		
