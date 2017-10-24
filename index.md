@@ -1,3 +1,5 @@
+install.packages("tutorial")
+
 ---
 title: "Example Document"
 author: "Your name here"
