@@ -103,7 +103,7 @@
 		with(marketingData, plot(density(Salary), xlab='Salary'))
 		
 		# (Plot 3) Lets see waht happens when we bring a histogram and a density plot together. Magic Happens :)
-		par(mfrow = c(1,2))
+		par(mfrow = c(1,1))
 		with(marketingData, hist(Salary, probability= TRUE, col='grey75'))
 		with(marketingData, lines(density(Salary), col='red'))
 		
