@@ -106,10 +106,12 @@
 		with(marketingData, hist(Salary, probability= TRUE, col='grey75'))
 		with(marketingData, lines(density(Salary), col='red'))
 		
-		# We are still exploring single values but lets bring few hsitograms with different variables into a single plot and compare them.
+		# We are still exploring single values but lets bring few hsitograms with different variables into a single plot and compare them. Remember that we can only draw plots for variables with numeric values
 		par(mfrow = c(1,4))
-		with(marketingData, hist(Location, col='red'))
+		with(marketingData, hist(AmountSpent, col='red'))
 		with(marketingData, hist(Catalogs, col='green'))
+		with(marketingData, hist(Children, col='blue'))
+		with(marketingData, hist(Salary, col='yellow'))
 	</code>
 		
     </div>
