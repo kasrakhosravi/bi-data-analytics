@@ -1,46 +1,47 @@
 
 <!DOCTYPE html>
 <html lang="en-US">
-  <head>
-    <meta charset="UTF-8">
-
-<!-- Begin Jekyll SEO tag v2.3.0 -->
+	
+<head>	
+<meta charset="UTF-8">
 <title>BI Data Analytics</title>
-<meta property="og:title" content="Welcome to GitHub Pages" />
-<meta property="og:locale" content="en_US" />
-<link rel="canonical" href="https://kasrakhosravi.github.io/aaa/" />
-<meta property="og:url" content="https://kasrakhosravi.github.io/aaa/" />
 <script src="https://cdn.datacamp.com/datacamp-light-latest.min.js"></script>
-<meta property="og:site_name" content="aaa" />
-<script type="application/ld+json">
-{"name":"aaa","description":null,"author":null,"@type":"WebSite","url":"https://kasrakhosravi.github.io/aaa/","image":null,"publisher":null,"headline":"Welcome to GitHub Pages","dateModified":null,"datePublished":null,"sameAs":null,"mainEntityOfPage":null,"@context":"http://schema.org"}</script>
-<!-- End Jekyll SEO tag -->
-
-    <meta name="description" content=""/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#157878">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="/aaa/assets/css/style.css?v=de65868e5d6a8010907d8f0aa653e21466b700a1">
-  </head>
+<meta name="description" content="BI Data Analytics"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#157878">
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/aaa/assets/css/style.css?v=de65868e5d6a8010907d8f0aa653e21466b700a1">
+</head>
+	
   <body>
 
     <section class="page-header">
-      <h1 class="project-name">aaa</h1>
+      <h1 class="project-name">BI Data Analytics</h1>
       <h2 class="project-tagline"></h2>
-
-        <a href="https://github.com/kasrakhosravi/aaa" class="btn">View on GitHub</a>
-
-
+        <a href="https://github.com/kasrakhosravi/bi-data-analytics" class="btn">View on GitHub</a>
     </section>
 
     <section class="main-content">
-      <h2 id="welcome-to-github-pages">Welcome to GitHub Pages</h2>
 	    
-	    <div data-datacamp-exercise data-lang="r">
+      <h2 id="welcome-to-github-pages">Lets have some fun with data</h2>
+	    
+      <div data-datacamp-exercise data-lang="r">
+	      
 	<code data-type="pre-exercise-code">
 		# This will get executed each time the exercise gets initialized
-		b = 6
+
+		require(RCurl)
+
+		marketingData <-read.csv(
+		  text=getURL(
+		    "https://raw.githubusercontent.com/kasrakhosravi/catalog-marketing-R/master/DirectMarketing.csv"),
+		  header=T, 
+		  sep = "\t"
+		)
+
+	    	summary(marketingData)
 	</code>
+		
 	<code data-type="sample-code">
 		# Create a variable a, equal to 5
 
