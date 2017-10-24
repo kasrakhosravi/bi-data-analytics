@@ -23,7 +23,9 @@
 
     <section class="main-content">
 	    
-      <h3 id="welcome-to-github-pages">First Lecture</h3>   
+      <h3 id="welcome-to-github-pages">First Lecture</h3>  
+	    
+    <h4 id="welcome-to-github-pages">General Data Exploration</h4>   
 	    
       <p style='font-size: 14px'>
 	It is crucial to examine waht kind of object we are working with in R. It turns out
@@ -55,6 +57,42 @@
 		
 		#This command will give us more details about the type of data object we are working with
 		class(marketingData)
+	</code>
+		
+    </div>
+	      
+ <h4 id="welcome-to-github-pages">Exploring One variable</h4>   
+	    
+      <p style='font-size: 14px'>
+	It is crucial to examine waht kind of object we are working with in R. It turns out
+	that R offers us a wide range of functions to do that. Lets explore some of them considering
+	that we have already loaded a dataset called 'marketingData'
+      </p>
+	    
+      <div data-datacamp-exercise data-lang="r">
+	      
+	<code data-type="pre-exercise-code">
+		# This will get executed each time the exercise gets initialized
+
+		require(RCurl)
+
+		marketingData <-read.csv(
+		  text=getURL(
+		    "https://raw.githubusercontent.com/kasrakhosravi/catalog-marketing-R/master/DirectMarketing.csv"),
+		  header=T, 
+		  sep = "\t"
+		)
+	</code>
+		
+	<code data-type="sample-code">
+		# We can explore the summary statistics of a single variable in a dataset which
+		# will give us values like min and max numbers, mean, median, etc.
+		with(marketingData, summary(Salary))
+		
+		# Also it is possible to draw a histogram based on a single variable. It shows us
+		# a general overview about the distribution of the variable values
+		with(marketingdata, hist(Salary))
+		
 	</code>
 		
     </div>
