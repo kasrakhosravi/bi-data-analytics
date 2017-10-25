@@ -62,8 +62,12 @@
 		#This command will give us a summary statistics of the R object
 		summary(marketingData)
 		
+		
+		
 		#This command will give us the dimensions of the R object we are dealing with
 		dim(marketingData)
+		
+		
 		
 		#This command will give us more details about the type of data object we are working with
 		class(marketingData)
@@ -101,23 +105,35 @@
 		# We can explore the summary statistics of a single variable in a dataset which will give us values like min and max numbers, mean, median, etc.
 		with(marketingData, summary(Salary))
 		
+		
+		
 		# (1st Plot) Also it is possible to draw a histogram based on a single variable. It shows us a general overview about the distribution of the variable values
 		with(marketingData, hist(Salary))
+		
+		
 		
 		# Imagine that we only need the mean and standard deviation for a single variable in a dataset. R will allow us to get it fast and easy :). It is important to keep in mind that not all datasets distributions are Gaussian (Bell-Like) and therefore different interpretations might be needed
 		with(marketingData, mean(Salary))
 		with(marketingData, sd(Salary))
 		
+		
+		
 		# It is beneficial to mention that calculating summary statistics is not useful for every type of dataset like categorical or discrete values. For instance in this dataset, Children variable can only have discrete values in order to be meaningful; therefore calculating its mean will not give us much of an important result. What does it mean to have 0.934 children? :)
 		with(marketingData, mean(Children))
 		
+		
+		
 		# (2nd Plot) We have used a histogram before but histogram is not the best option to compare data distribution. Here we are only exploring one variable but it would be nice to have the  to get familiar with the tools we can use in future
 		with(marketingData, plot(density(Salary), xlab='Salary'))
+		
+		
 		
 		# (Plot 3) Lets see waht happens when we bring a histogram and a density plot together. Magic Happens :)
 		par(mfrow = c(1,2))
 		with(marketingData, hist(Salary, probability= TRUE, col='grey75'))
 		with(marketingData, lines(density(Salary), col='red'))
+		
+		
 		
 		# (Plot 4) We are still exploring single values but lets bring few hsitograms with different variables into a single plot and compare them. Remember that we can only draw plots for variables with numeric values
 		par(mfrow = c(1,4))
@@ -125,6 +141,9 @@
 		with(marketingData, hist(Catalogs, col='green'))
 		with(marketingData, hist(Children, col='blue'))
 		with(marketingData, hist(Salary, col='yellow'))
+		
+		
+		
 	</code>
 		
     </div>
