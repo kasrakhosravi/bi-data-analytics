@@ -115,7 +115,8 @@
 		# Imagine that we only need the mean and standard deviation for a single variable in a dataset. R will allow us to get it fast and easy :). It is important to keep in mind that not all datasets distributions are Gaussian (Bell-Like) and therefore different interpretations might be needed
 		with(marketingData, mean(Salary))
 		with(marketingData, sd(Salary))
-		
+		with(marketingData, median(Salary))
+		with(marketingData, Variance(Salary))
 		
 		
 		# It is beneficial to mention that calculating summary statistics is not useful for every type of dataset like categorical or discrete values. For instance in this dataset, Children variable can only have discrete values in order to be meaningful; therefore calculating its mean will not give us much of an important result. What does it mean to have 0.934 children? :)
