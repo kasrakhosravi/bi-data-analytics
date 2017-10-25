@@ -44,9 +44,9 @@
 
       require(RCurl)
 
-      marketingData <-read.csv(
+      birthData <-read.tsv(
         text=getURL(
-          "https://raw.githubusercontent.com/kasrakhosravi/catalog-marketing-R/master/DirectMarketing.csv"),
+          "https://raw.githubusercontent.com/kasrakhosravi/bi-data-analytics/master/birthsmokers.tsv"),
         header=T, 
         sep = "\t"
       )
@@ -54,20 +54,20 @@
 
     <code data-type="sample-code">
       #This command will give us a summary statistics of the R object
-      summary(marketingData)
+      summary(birthData)
     </code>
 		
     </div>
     
-      <footer class="site-footer">
-	      <span id='footer-author'>
-		      Made with <i style='color: red' class="fa fa-heart pulse"></i> By <a href='https://github.com/kasrakhosravi'>Kasra</a>
-	      </span>
-	      <br />
-	      <span id='footer-author'>
-	      Course Instructor: Associate Professor <a href='https://www.bi.no/om-bi/ansatte/institutt-for-samfunnsokonomi/gudmund-hermansen/'>Gudmund Hermansen</a>
-	      </span>
-      </footer>
+    <footer class="site-footer">
+      <span id='footer-author'>
+	      Made with <i style='color: red' class="fa fa-heart pulse"></i> By <a href='https://github.com/kasrakhosravi'>Kasra</a>
+      </span>
+      <br />
+      <span id='footer-author'>
+      Course Instructor: Associate Professor <a href='https://www.bi.no/om-bi/ansatte/institutt-for-samfunnsokonomi/gudmund-hermansen/'>Gudmund Hermansen</a>
+      </span>
+    </footer>
 	
     </section>
 
