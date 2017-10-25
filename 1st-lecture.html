@@ -199,7 +199,7 @@
 			      
 		# Next we will create a function that accepts a variable and an exchange factor that will transform the variable into a new variable. Then we will draw a histogram  plot based on the new and transformed variable
 	      	transformVar <- function(oldVar, newvar, exchFact) {
-		    marketingData$newVar <- with(marketingData, round(exchFct * oldVar))
+		    marketingData$newVar <- with(marketingData, round(exchFact * oldVar))
 		    with(marketingData, hist(marketingdata$.newVar, col='grey75'))
 		}
 	    
