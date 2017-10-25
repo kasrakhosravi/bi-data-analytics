@@ -143,8 +143,9 @@
 		with(marketingData, hist(Salary, col='yellow'))
 		
 		# (Plot 5) Sometimes we want to explore a variable in a different format. For instance we have the amount spent in NOk and we want to change it to USD. The following command will help us to do that easily
-		par(mfrow = c(1,1))
+		par(mfrow = c(1,2))
 		marketingData$UsdAmountSpent <- with(marketingData, round(AmountSpent * 0.12))
+		with(marketingData, hist(AmoutnSpent, col='blue'))
 		with(marketingData, hist(UsdAmountSpent, col='grey75'))
 						
 		
