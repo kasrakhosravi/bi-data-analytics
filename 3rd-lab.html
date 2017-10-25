@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	
+<head>	
+<meta charset="UTF-8">
+<title>BI Data Analytics</title>
+<script src="https://cdn.datacamp.com/datacamp-light-latest.min.js"></script>
+<meta name="description" content="BI Data Analytics"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#157878">
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/aaa/assets/css/style.css?v=de65868e5d6a8010907d8f0aa653e21466b700a1">
+<link rel="stylesheet" href="/style.css">
+</head>
+	
+  <body>
+
+    <section class="page-header">
+    <h1 class="project-name">BI Data Analytics</h1>
+      <h2 class="project-tagline"></h2>
+        <a href="https://kasrakhosravi.github.io/bi-data-analytics" class="btn">Homepage</a>
+    </section>
+
+    <section class="main-content">
+	    
+      <h4 id="welcome-to-github-pages">Third Lab</h4>  
+	    
+    <p style='font-size: 14px'>
+      In this lab we are gonna analyze a dataset which shows the relationship between
+      maternal smoking and the baby's birth weight. A low birth weight is known to be
+      a contributing factor to a number of infant deaths, and babies with a low birth
+      weight (who survives) are more prone to various health problems. Here we try to
+      understand the effect of smoking on birth weight. In particular, we are interestanding
+      to what extent smoking during pregnancy affect the birth weight of babies.
+    </p>
+
+    <br />
+    <br />
+
+    <div data-datacamp-exercise data-lang="r">
+
+    <code data-type="pre-exercise-code">
+      # This will get executed each time the exercise gets initialized
+
+      require(RCurl)
+
+      marketingData <-read.csv(
+        text=getURL(
+          "https://raw.githubusercontent.com/kasrakhosravi/catalog-marketing-R/master/DirectMarketing.csv"),
+        header=T, 
+        sep = "\t"
+      )
+    </code>
+
+    <code data-type="sample-code">
+      #This command will give us a summary statistics of the R object
+      summary(marketingData)
+    </code>
+		
+    </div>
+    
+      <footer class="site-footer">
+	      <span id='footer-author'>
+		      Made with <i style='color: red' class="fa fa-heart pulse"></i> By <a href='https://github.com/kasrakhosravi'>Kasra</a>
+	      </span>
+	      <br />
+	      <span id='footer-author'>
+	      Course Instructor: Associate Professor <a href='https://www.bi.no/om-bi/ansatte/institutt-for-samfunnsokonomi/gudmund-hermansen/'>Gudmund Hermansen</a>
+	      </span>
+      </footer>
+	
+    </section>
+
+  </body>
+</html>
