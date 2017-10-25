@@ -53,8 +53,79 @@
     </code>
 
     <code data-type="sample-code">
-      #This command will give us a summary statistics of the R object
+      # (Section b) First lets get a summary overview of the birthData object
       summary(birthData)
+	    
+      # (Section c)
+	with(birthData, plot(Gestation, Weight))
+	with(birthData, cor(Gestation, Weight))	
+	    
+      # (Section d): Interesting finding is that women who smoke do not have shorter pregnancy periods. So smoking does have an effect on birth weight but not through shortening the pregnancy period.
+    	with(birthData, boxplot(Weight ~ Smoke, ylab='Weight'))
+	with(birthData, boxplot(Gestation ~ Smoke, ylab='Gestation'))
+	    
+      # (Section e): The slope for two lines seem parallel so the only difference is the intercept. It can be argued that the effect of each extra gestation period has the samee effect for both group but the starting weight for each group is different
+    	with (birthData , plot(Gestation, Weight, pch = 19, cex = 2, col = Smoke))
+	legend("topleft", legend = c("noSmoke","Smoke"), pch = 19, col = 1:2)
+	    
+   	# (Section f): 
+    	birthLm1 <- with(birthData, lm(Weight ~ Gestation))
+	summary(birthLm1)
+		    
+    	# (Section g): Effect of a dummy variable
+		    
+    	# (Section h): Smoking variable has improved the reliability of the model significantly
+    	birthLm2 <- with(birthData, lm(Weight ~ Gestation + Smoke))
+	summary(birthLm2)
+	    
+	# (Section i): he weight of a child if the mother smokes and the pregnancy period is 37 weeks
+	# 2900 - 244.544 = 2655.456
+	    
+    	# (Section j):
+    	newBirthData <- data.frame(
+	  Gestation = c(37,42,37,42),
+	  Smoke = c('No', 'No', 'Yes', 'Yes')
+	)
+
+	predict(birthLm2, newBirthData, interval='prediction')
+
+	abline (a = coefficients(birthLm2)[1],
+		b = coefficients(birthLm2)[2],
+		col = "red"
+	)
+			
+	# (Section k): The model from i is more sure about its prediction due to the
+	# fact that its interval (upr - lwr) is shorter. Why does model i believe this?
+	# It is not that straightforward to understand why but the thing is that model i
+	# will become more certain if it has more data (or higher quality data). Although
+	# model i's data include information about non-smoking mothers which should not have
+	# an effect on the model for smoking mothers, we know that the non-smoking and smoking
+	# mothers share something in common which is the effect of smoking on gestation.
+	# That is the reason behind the shorter intervals in model i. The model uses data from 
+	# both groups to obtain more precise estiamte of the effect of gestation on birth weight.
+
+	birthSmoke <- with(birthData,subset(
+		birthData, Smoke == "Yes"
+	))
+
+	birthSmokeLm <- with(birthSmoke, lm(
+		Weight ~ Gestation
+	))
+
+	birthSmokeNew <- data.frame(
+		Gestation = c(37,42)
+	)
+
+	predict(birthSmokeLm, birthSmokeNew, interval='prediction')
+	predict(birthLm2, newBirthData, interval='prediction')
+	    
+    	# (Section l): It seems that the interaction did not improve the model
+	birthInteractionLm <- with(birthData, lm(
+		Weight ~ Gestation + Smoke + Gestation * Smoke
+	))
+
+summary(birthLm2)
+summary(birthInteractionLm)
     </code>
 		
     </div>
