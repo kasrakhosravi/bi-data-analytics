@@ -137,10 +137,11 @@ birthSmokeNew <- data.frame(
 predict(birthSmokeLm, birthSmokeNew, interval='prediction')
 predict(birthLm2, newBirthData, interval='prediction')
 
-		# (Section l): It seems that the interaction did not improve the model
+# (Section l): It seems that the interaction did not improve the model
+	
 birthInteractionLm <- with(birthData, lm(
 	Weight ~ Gestation + Smoke + Gestation * Smoke
-	))
+))
 
 summary(birthLm2)
 summary(birthInteractionLm)
