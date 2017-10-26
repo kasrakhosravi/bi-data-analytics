@@ -57,10 +57,16 @@
     </code>
 
     <code data-type="sample-code">
-      # (Section b) First lets get a summary overview of the birthData object
-      summary(birthData)
-	    
-      # (Section c)
+    # (Section a): First we need to load the data into R (We are getting tired of seeing that piece of code 1000 times already)
+	Lets load some data. We are already doing that behind the scenes here
+		
+    # (Section b) First lets get a summary overview of the birthData object
+    summary(birthData)
+	# We know from background information that a normal gestation age is almost like 40 weeks (Although it seems that most births happen between 37 to 42 weeks)
+	We also know that any weight less than 2499g is considered a low birth weight (regardless of gestation period). Does our sample data seem normal to you based 
+	on the summaries we got? To me, it seems almost normal.
+		    
+    # (Section c)
 	with(birthData, plot(Gestation, Weight))
 	with(birthData, cor(Gestation, Weight))	
 	    
