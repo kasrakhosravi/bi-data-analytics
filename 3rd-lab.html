@@ -13,144 +13,153 @@
 <link rel="stylesheet" href="/style.css">
 </head>
 	
-  <body>
+<body>
 
-    <section class="page-header">
-	    
-    <h1 class="project-name">BI Data Analytics</h1>
-      <h2 class="project-tagline"></h2>
-        <a href="https://kasrakhosravi.github.io/bi-data-analytics" class="btn">Homepage</a>
-    </section>
+<section class="page-header">
+	<h1 class="project-name">BI Data Analytics</h1>
+	<h2 class="project-tagline"></h2>
+	<a href="https://kasrakhosravi.github.io/bi-data-analytics" class="btn">Homepage</a>
+</section>
 
-    <section class="main-content">
-	    
-    <h4 id="welcome-to-github-pages">Third Lab</h4>  
-	    
-    <p style='font-size: 14px'>
-      In this lab session we are gonna analyze a dataset which shows the relationship between
-      maternal smoking and the baby's birth weight. A low birth weight is known to be
-      a contributing factor to a number of infant deaths, and babies with a low birth
-      weight (who survives) are more prone to various health problems. Here we try to
-      understand the effect of smoking on birth weight. In particular, we are interested in 
-      understanding to what extent smoking during pregnancy affect the birth weight of babies.
-      Before we start our analysis, it is important to point out that we need to trust the data
-      that was gathered by the researchers and also trust them on the fact that any difference that
-      is seen in birth weight is probabely related to smoking and no other extra factor that was not
-      considered by the researchers plays a role.
-    </p>
+<section class="main-content">
 
-    <br />
+<h4 id="welcome-to-github-pages">Third Lab</h4>  
 
-    <div data-datacamp-exercise data-lang="r">
+<p style='font-size: 14px'>
+	In this lab session we are gonna analyze a dataset which shows the relationship between
+	maternal smoking and the baby's birth weight. A low birth weight is known to be
+	a contributing factor to a number of infant deaths, and babies with a low birth
+	weight (who survives) are more prone to various health problems. Here we try to
+	understand the effect of smoking on birth weight. In particular, we are interested in 
+	understanding to what extent smoking during pregnancy affect the birth weight of babies.
+	Before we start our analysis, it is important to point out that we need to trust the data
+	that was gathered by the researchers and also trust them on the fact that any difference that
+	is seen in birth weight is probabely related to smoking and no other extra factor that was not
+	considered by the researchers plays a role.
+</p>
 
-    <code data-type="pre-exercise-code">
-      # This will get executed each time the exercise gets initialized
+<br />
 
-      require(RCurl)
+<div data-datacamp-exercise data-lang="r">
 
-      birthData <-read.csv(
-        text=getURL(
-          "https://raw.githubusercontent.com/kasrakhosravi/bi-data-analytics/master/birthsmokers.tsv"),
-        header=T, 
-        sep = "\t"
-      )
-    </code>
+<code data-type="pre-exercise-code">
+# This will get executed each time the exercise gets initialized
 
-    <code data-type="sample-code">
-    # (Section a): First we need to load the data into R (We are getting tired of seeing that piece of code 1000 times already)
-	Lets load some data. We are already doing that behind the scenes here
-		
-    # (Section b) First lets get a summary overview of the birthData object
-    summary(birthData)
-	# We know from background information that a normal gestation age is almost like 40 weeks (Although it seems that most births happen between 37 to 42 weeks)
-	We also know that any weight less than 2499g is considered a low birth weight (regardless of gestation period). Does our sample data seem normal to you based 
-	on the summaries we got? To me, it seems almost normal.
+require(RCurl)
+
+birthData <-read.csv(
+	text=getURL(
+	  "https://raw.githubusercontent.com/kasrakhosravi/bi-data-analytics/master/birthsmokers.tsv"
+	),
+	header=T, 
+	sep = "\t"
+)
+</code>
+
+<code data-type="sample-code">
+# (Section a): First we need to load the data into R (We are getting tired of seeing that piece of code 1000 times already)
+Lets load some data. We are already doing that behind the scenes here
+
+# (Section b) First lets get a summary overview of the birthData object.
+	
+summary(birthData)
+	
+# We know from background information that a normal gestation age is almost like 40 weeks (Although it seems that 
+most births happen between 37 to 42 weeks). We also know that any weight less than 2499g is considered a low birth
+weight (regardless of gestation period). Does our sample data seem normal to you based on the summaries we got? To me,
+it seems almost normal.
+
+# (Section c)
+	
+with(birthData, plot(Gestation, Weight))
+with(birthData, cor(Gestation, Weight))	
+
+# (Section d): Interesting finding is that women who smoke do not have shorter pregnancy periods. So smoking does have an
+effect on birth weight but not through shortening the pregnancy period.
+	
+with(birthData, boxplot(Weight ~ Smoke, ylab='Weight'))
+with(birthData, boxplot(Gestation ~ Smoke, ylab='Gestation'))
+
+# (Section e): The slope for two lines seem parallel so the only difference is the intercept. It can be argued that the
+effect of each extra gestation period has the samee effect for both group but the starting weight for each group is different
+	
+with (birthData , plot(Gestation, Weight, pch = 19, cex = 2, col = Smoke))
+legend("topleft", legend = c("noSmoke","Smoke"), pch = 19, col = 1:2)
+
+# (Section f)
+	
+birthLm1 <- with(birthData, lm(Weight ~ Gestation))
+summary(birthLm1)
 		    
-    # (Section c)
-	with(birthData, plot(Gestation, Weight))
-	with(birthData, cor(Gestation, Weight))	
-	    
-      # (Section d): Interesting finding is that women who smoke do not have shorter pregnancy periods. So smoking does have an effect on birth weight but not through shortening the pregnancy period.
-    	with(birthData, boxplot(Weight ~ Smoke, ylab='Weight'))
-	with(birthData, boxplot(Gestation ~ Smoke, ylab='Gestation'))
-	    
-      # (Section e): The slope for two lines seem parallel so the only difference is the intercept. It can be argued that the effect of each extra gestation period has the samee effect for both group but the starting weight for each group is different
-    	with (birthData , plot(Gestation, Weight, pch = 19, cex = 2, col = Smoke))
-	legend("topleft", legend = c("noSmoke","Smoke"), pch = 19, col = 1:2)
-	    
-   	# (Section f): 
-    	birthLm1 <- with(birthData, lm(Weight ~ Gestation))
-	summary(birthLm1)
+# (Section g): Effect of a dummy variable
 		    
-    	# (Section g): Effect of a dummy variable
-		    
-    	# (Section h): Smoking variable has improved the reliability of the model significantly
-    	birthLm2 <- with(birthData, lm(Weight ~ Gestation + Smoke))
-	summary(birthLm2)
+# (Section h): Smoking variable has improved the reliability of the model significantly
+						
+birthLm2 <- with(birthData, lm(Weight ~ Gestation + Smoke))
+summary(birthLm2)
 	    
-	# (Section i): he weight of a child if the mother smokes and the pregnancy period is 37 weeks
-	# 2900 - 244.544 = 2655.456
+# (Section i): he weight of a child if the mother smokes and the pregnancy period is 37 weeks -> 2900 - 244.544 = 2655.456
 	    
-    	# (Section j):
-    	newBirthData <- data.frame(
-	  Gestation = c(37,42,37,42),
-	  Smoke = c('No', 'No', 'Yes', 'Yes')
-	)
+# (Section j)
+	
+newBirthData <- data.frame(
+	Gestation = c(37,42,37,42),
+	Smoke = c('No', 'No', 'Yes', 'Yes')
+)
 
-	predict(birthLm2, newBirthData, interval='prediction')
+predict(birthLm2, newBirthData, interval='prediction')
 
-	abline (a = coefficients(birthLm2)[1],
-		b = coefficients(birthLm2)[2],
-		col = "red"
-	)
+abline (
+	a = coefficients(birthLm2)[1],
+	b = coefficients(birthLm2)[2],
+	col = "red"
+)
 			
-	# (Section k): The model from i is more sure about its prediction due to the
-	# fact that its interval (upr - lwr) is shorter. Why does model i believe this?
-	# It is not that straightforward to understand why but the thing is that model i
-	# will become more certain if it has more data (or higher quality data). Although
-	# model i's data include information about non-smoking mothers which should not have
-	# an effect on the model for smoking mothers, we know that the non-smoking and smoking
-	# mothers share something in common which is the effect of smoking on gestation.
-	# That is the reason behind the shorter intervals in model i. The model uses data from 
-	# both groups to obtain more precise estiamte of the effect of gestation on birth weight.
+# (Section k): The model from i is more sure about its prediction due to the fact that its interval (upr - lwr) is shorter.
+Why does model i believe this? It is not that straightforward to understand why but the thing is that model i will become
+more certain if it has more data (or higher quality data). Although model i's data include information about non-smoking 
+mothers which should not have an effect on the model for smoking mothers, we know that the non-smoking and smoking mothers
+share something in common which is the effect of smoking on gestation. That is the reason behind the shorter intervals in
+model i. The model uses data from both groups to obtain more precise estiamte of the effect of gestation on birth weight.
 
-	birthSmoke <- with(birthData,subset(
-		birthData, Smoke == "Yes"
-	))
+birthSmoke <- with(birthData,subset(
+	birthData, Smoke == "Yes"
+))
 
-	birthSmokeLm <- with(birthSmoke, lm(
-		Weight ~ Gestation
-	))
+birthSmokeLm <- with(birthSmoke, lm(
+	Weight ~ Gestation
+))
 
-	birthSmokeNew <- data.frame(
-		Gestation = c(37,42)
-	)
+birthSmokeNew <- data.frame(
+	Gestation = c(37,42)
+)
 
-	predict(birthSmokeLm, birthSmokeNew, interval='prediction')
-	predict(birthLm2, newBirthData, interval='prediction')
-	    
-    	# (Section l): It seems that the interaction did not improve the model
-	birthInteractionLm <- with(birthData, lm(
-		Weight ~ Gestation + Smoke + Gestation * Smoke
+predict(birthSmokeLm, birthSmokeNew, interval='prediction')
+predict(birthLm2, newBirthData, interval='prediction')
+
+		# (Section l): It seems that the interaction did not improve the model
+birthInteractionLm <- with(birthData, lm(
+	Weight ~ Gestation + Smoke + Gestation * Smoke
 	))
 
 summary(birthLm2)
 summary(birthInteractionLm)
-    </code>
-		
-    </div>
-    
-    <footer class="site-footer">
-      <span id='footer-author'>
-	      Made with <i style='color: red' class="fa fa-heart pulse"></i> By <a href='https://github.com/kasrakhosravi'>Kasra</a>
-      </span>
-      <br />
-      <span id='footer-author'>
-      Course Instructor: Associate Professor <a href='https://www.bi.no/om-bi/ansatte/institutt-for-samfunnsokonomi/gudmund-hermansen/'>Gudmund Hermansen</a>
-      </span>
-    </footer>
 	
-    </section>
+</code>		
+</div>
+    
+<footer class="site-footer">
+	<span id='footer-author'>
+		Made with <i style='color: red' class="fa fa-heart pulse"></i> By <a href='https://github.com/kasrakhosravi'>Kasra</a>
+	</span>
+	<br />
+	<span id='footer-author'>
+	Course Instructor: Associate Professor 
+		<a href='https://www.bi.no/om-bi/ansatte/institutt-for-samfunnsokonomi/gudmund-hermansen/'>Gudmund Hermansen</a>
+		</span>
+</footer>
+	
+</section>
 
-  </body>
+</body>
 </html>
