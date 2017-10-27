@@ -102,7 +102,11 @@ with(housingData, boxplot(
 	    
 <p style='font-size: 14px'>
 	We have explored single variables and used tools like histograms, boxplots, barplots and numercial summaries
-	to get more familiar with the dataset. Now lets move on to analysing pairwise relationships. 
+	to get more familiar with the dataset. Now lets move on to analysing pairwise relationships. Our interest for
+	this part is to understand the relationship between variables. For isntance is there a relationship between the
+	price of the house and the number of bathrooms? Remember that here we are just exploring variables and it is in the
+	model phase that we quantify the relationships but analysing the relationship at this stage is useful to detect anamolies,
+	errors, outliers, subgroups, etc. which an guide the modellig phase.
 </p>
 	    
 <div data-datacamp-exercise data-lang="r">
@@ -122,11 +126,21 @@ housingData <-read.csv(
 </code>
 		
 <code data-type="sample-code">
-# A typical tool to use to see the relationship between two variables is a scatterplot
+# (Plot 1): A typical tool to use to see the relationship between two variables is a scatterplot
 with(housingData, plot(
-	x = SqM,
-	y = Price
+	SqM,
+	Price,
+	cex = 2.5,
+	pch = 21,
+	bg = 'grey'
 ))
+	
+# Next we try to include a smoothening curve into the data. We do that by using the 'smooth.spline()' function and pass it into the 'lines()' function in order to draw it. You can also see that we assign the 'df = 5' to give the smoothening curve a higher degree of freedom for more flexibility.
+with(housingData, lines(
+	smooth.spline(SqM, Price, df = 5),
+	col = 'red'
+))
+	
 </code>
 		
 </div>
