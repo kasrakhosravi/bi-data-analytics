@@ -60,10 +60,14 @@ housingData <-read.csv(
 </code>
 		
 <code data-type="sample-code">
-# This command will give us a general summary of a single categorical variable. There is actually two ways to achieve
-# this for categorical data.
+# This command will give us a general summary of a single categorical variable. There is actually two ways to achieve. This for categorical data.
 with(housingData, summary(Brick))
 with(housingData, table(Brick))
+	
+# To get a sense of the percentage distribution of the sample data across different variable values, we can use the following function.
+with(housingData, round(
+	prop.table(table(Brick)),2
+))
 </code>
 		
 </div>
