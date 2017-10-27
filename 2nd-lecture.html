@@ -50,34 +50,24 @@
 
   require(RCurl)
 
-  marketingData <-read.csv(
+  housingData <-read.csv(
     text=getURL(
-      "https://raw.githubusercontent.com/kasrakhosravi/catalog-marketing-R/master/DirectMarketing.csv"
+      "https://raw.githubusercontent.com/kasrakhosravi/bi-data-analytics/master/datasets/HousePrices.csv"
     ),
     header=T, 
     sep = "\t"
   )
 </code>
 		
-	<code data-type="sample-code">
-		#This command will give us a summary statistics of the R object
-		summary(marketingData)
+<code data-type="sample-code">
+	#This command will give us a general summary of a single categorical variable
+	with(housingData, summary(Brick))
+</code>
 		
-		
-		
-		#This command will give us the dimensions of the R object we are dealing with
-		dim(marketingData)
-		
-		
-		
-		#This command will give us more details about the type of data object we are working with
-		class(marketingData)
-	</code>
-		
-    </div>
+</div>
       
-    <br />
-    <br />
+<br />
+<br />
 	      
  <h5 id="welcome-to-github-pages">Exploring One variable</h5>   
 	    
