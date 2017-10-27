@@ -34,13 +34,14 @@
 <br />
 <br />
 	    
-<h5 id="welcome-to-github-pages">Exploring One variable (Categorical) and Pairwise Relationships</h5>   
+<h5 id="welcome-to-github-pages">Exploring One variable 2</h5>   
 	    
 <p style='font-size: 14px'>
   In the previous lecture we explored some methods to perform analysis for single variables. lets continue that
   work by analysing categorical single variables. Logically, it does not make sense to compute summary statistics
   (like mean or median for these types of variables; But we have other options like frequency tables and barplots.
-  Lets try using them.
+  Lets try using them. At the end we also try to learn some stuff about boxplot which is a great tool to give us a
+	quick glimpse into the data and shows us the spread of the data.
 </p>
 	    
 <div data-datacamp-exercise data-lang="r">
@@ -64,21 +65,67 @@ housingData <-read.csv(
 with(housingData, summary(Brick))
 with(housingData, table(Neighborhood))
 	
+	
 # To get a sense of the percentage distribution of the sample data across different variable values, we can use the following function.
 with(housingData, round(
 	prop.table(table(Brick)),2
 ))
 	
+	
 # In my opinion, this is a really interesting analysis since it gives us the spread of samples across different categories and we can get a sense if we have chosen a balanced data sample for our study.
+	
 	
 # (Plot 1): Another tool for analysing a single categorical variable is to use a barplot. It gives us the same information as the 'table' function above but it displays it more visually
 with(housingData, barplot(
 	table(Neighborhood), main = 'Neighborhood'
 ))
 	
-# Some of you might ask why we have used something like 'table(sth)' after the 'barplot()' functuin. It seemed that we did not have to pass such an input to other types of functions like 'plot()'? Well, the simple explanation is that this function need a a vector or matrix of values describing the bars which make up the plot and that is exactly what we are doign with 'table(sth)'
+	
+# Some of you might ask why we have used something like 'table(sth)' after the 'barplot()' functuin. It seemed that we did not have to pass such an input to other types of functions like 'plot()'? Well, the simple explanation is that this function need a vector or matrix of values describing the bars which make up the plot and that is exactly what we are doign with 'table(sth)'
 
 
+# Another tool to use for single variable analysis is a boxplot which can be used for numerical variables. This tool is quite interesting because it shows us the quartiles of distribtuion and tells us where msot of the data is densed. The squre in the middle is used for this purpose which shows us the distance between first and third quartile.
+with(housingData, boxplot(
+	Price,
+	horizontal = TRUE,
+	xlab = 'Price'
+))
+</code>
+		
+</div>
+      
+<br />
+<br />
+	
+<h5 id="welcome-to-github-pages">Exploring Pairwise Relationship</h5>   
+	    
+<p style='font-size: 14px'>
+	We have explored single variables and used tools like histograms, boxplots, barplots and numercial summaries
+	to get more familiar with the dataset. Now lets move on to analysing pairwise relationships. 
+</p>
+	    
+<div data-datacamp-exercise data-lang="r">
+	      
+<code data-type="pre-exercise-code">
+# This will get executed each time the exercise gets initialized
+
+require(RCurl)
+
+housingData <-read.csv(
+	text=getURL(
+		"https://raw.githubusercontent.com/kasrakhosravi/bi-data-analytics/master/datasets/housingData.tsv"
+	),
+	header=T, 
+	sep = "\t"
+)
+</code>
+		
+<code data-type="sample-code">
+# A typical tool to use to see the relationship between two variables is a scatterplot
+with(housingData, plot(
+	x = SqM,
+	y = Price
+))
 </code>
 		
 </div>
