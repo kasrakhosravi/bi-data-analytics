@@ -62,12 +62,23 @@ housingData <-read.csv(
 <code data-type="sample-code">
 # This command will give us a general summary of a single categorical variable. There is actually two ways to achieve. This for categorical data.
 with(housingData, summary(Brick))
-with(housingData, table(Brick))
+with(housingData, table(Neighborhood))
 	
 # To get a sense of the percentage distribution of the sample data across different variable values, we can use the following function.
 with(housingData, round(
 	prop.table(table(Brick)),2
 ))
+	
+# In my opinion, this is a really interesting analysis since it gives us the spread of samples across different categories and we can get a sense if we have chosen a balanced data sample for our study.
+	
+# (Plot 1): Another tool for analysing a single categorical variable is to use a barplot. It gives us the same information as the 'table' function above but it displays it more visually
+with(housingData, barplot(
+	table(Neighbodhood), main = 'Neighborhood'
+))
+	
+# Some of you might ask why we have used something like 'table(sth)' after the 'barplot()' functuin. It seemed that we did not have to pass such an input to other types of functions like 'plot()'? Well, the simple explanation is that this function need a a vector or matrix of values describing the bars which make up the plot and that is exactly what we are doign with 'table(sth)'
+
+
 </code>
 		
 </div>
