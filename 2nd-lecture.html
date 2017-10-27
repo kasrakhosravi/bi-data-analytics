@@ -46,22 +46,22 @@
 <div data-datacamp-exercise data-lang="r">
 	      
 <code data-type="pre-exercise-code">
-  # This will get executed each time the exercise gets initialized
+# This will get executed each time the exercise gets initialized
 
-  require(RCurl)
+require(RCurl)
 
-  housingData <-read.csv(
-    text=getURL(
-      "https://raw.githubusercontent.com/kasrakhosravi/bi-data-analytics/master/datasets/HousePrices.csv"
-    ),
-    header=T, 
-    sep = "\t"
-  )
+housingData <-read.csv(
+	text=getURL(
+		"https://raw.githubusercontent.com/kasrakhosravi/bi-data-analytics/master/datasets/HousePrices.csv"
+	),
+	header=T, 
+	sep = "\t"
+)
 </code>
 		
 <code data-type="sample-code">
-	#This command will give us a general summary of a single categorical variable
-	with(housingData, summary(Brick))
+#This command will give us a general summary of a single categorical variable
+with(housingData, summary(Brick))
 </code>
 		
 </div>
