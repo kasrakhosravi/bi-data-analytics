@@ -135,7 +135,7 @@ with(housingData, plot(
 	bg = 'grey'
 ))
 	
-# Next we try to include a smoothening curve into the data. We do that by using the 'smooth.spline()' function and pass it into the 'lines()' function in order to draw it. You can also see that we assign the 'df = 5' to give the smoothening curve a higher degree of freedom for more flexibility.
+# Next we try to include a smoothening curve into the data. We do that by using the 'smooth.spline()' function and pass it into the 'lines()' function in order to draw it. You can also see that we assign the 'df = 5' to give the smoothening curve a higher degree of freedom for more flexibility. Try assigning lower and higher values for the 'df' parameter to see what happens. It seems that lower 'df' will follow the sample data trend less strictly and a higher value is more flexibile in following its trend.
 with(housingData, lines(
 	smooth.spline(SqM, Price, df = 5),
 	col = 'red'
