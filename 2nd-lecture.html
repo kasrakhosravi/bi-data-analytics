@@ -35,11 +35,11 @@
 <h5 id="welcome-to-github-pages">Exploring One variable 2</h5>   
 	    
 <p style='font-size: 14px'>
-  In the previous lecture we explored some methods to perform analysis for single variables. lets continue that
+  In the previous lecture we explored some methods to perform analysis for single variables. Lets continue that
   work by analysing categorical single variables. Logically, it does not make sense to compute summary statistics
   (like mean or median for these types of variables; But we have other options like frequency tables and barplots.
-  Lets try using them. At the end we also try to learn some stuff about boxplot which is a great tool to give us a
-	quick glimpse into the data and shows us the spread of the data.
+  At the end we also try to learn some stuff about boxplot which is a great tool to give us a
+  quick glimpse into the data and shows us the spread of the data.
 </p>
 	    
 <div data-datacamp-exercise data-lang="r">
@@ -68,6 +68,7 @@ with(housingData, table(Neighborhood))
 with(housingData, round(
 	prop.table(table(Brick)),2
 ))
+#Actually, since it does not make much sense to calculate 'cor' or the linear relationship between categorical variables. Instead we use the cross-tabulation which shows us the number of samples in different subsets of categories
 	
 	
 # In my opinion, this is a really interesting analysis since it gives us the spread of samples across different categories and we can get a sense if we have chosen a balanced data sample for our study.
@@ -93,7 +94,6 @@ with(housingData, boxplot(
 		
 </div>
       
-<br />
 <br />
 	
 <h5 id="welcome-to-github-pages">Exploring Pairwise Relationship</h5>   
@@ -176,6 +176,13 @@ with(housingData, cor(
 round(cor(
 	housingData[c('Price', 'SqFt', 'Bedrooms')]
 ), 2)
+	
+# We have previously argued why it is not a good idea to use 'cor' for categorical variables and instead we use the 'cross-tabulation' oncept. On the other hand it is possible to use barplots to compare categorical variables.
+with(housingData, barplot(
+	table(Brick, Neighborhood),
+	c('Other', 'Brick'),
+	beside = TRUE
+))
 	
 </code>
 		
