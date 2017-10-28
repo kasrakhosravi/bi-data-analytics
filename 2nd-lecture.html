@@ -215,8 +215,7 @@ housingData <-read.csv(
 <code data-type="sample-code">
 # Lets get the terminology straight. Here We would like to see the effect of SqFt (Independent, Predictor) Variable on the price of the house (Dependent, Goal). For that we craete a simple linear regression model which shows us this effect. Lets do that in R.	
 priceLm <- with(housingData, lm(
-	Price,
- 	SqFt
+	Price ~ SqFt
 ))
 # Here we are calcualting the linear model between these two variables (First is the dependent and the others will be independent). We are storing the model into a variable called 'priceLm' which later we  can use to plot the model or for prediction.
 with(housingData, plot(
@@ -226,6 +225,7 @@ with(housingData, plot(
  	pch = 21,
  	bg = 'grey'
 ))
+abline(priceLm, col='red')
 	
 </code>
 </div>
