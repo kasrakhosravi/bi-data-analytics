@@ -140,7 +140,7 @@ with(housingData, lines(
 ))
 	
 # (Plot 3): But assigning a high value for 'df' for every variable and dataset will not always give us a flexible and reliable model. Check out this one and see if you can reason why the red line is not quite representative of the sample dataset.
-ith(housingData, plot(
+with(housingData, plot(
 	Price,
 	Offers,
 	cex = 2.5,
