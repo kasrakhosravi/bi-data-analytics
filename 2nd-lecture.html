@@ -217,7 +217,7 @@ housingData <-read.csv(
 priceLm <- with(housingData, lm(
 	Price ~ SqFt
 ))
-# Here we are calcualting the linear model between these two variables (First is the dependent and the others will be independent). We are storing the model into a variable called 'priceLm' which later we  can use to plot the model or for prediction.
+# (Plot 1 & 2): Here we are calcualting the linear model between these two variables (First is the dependent and the others will be independent). We are storing the model into a variable called 'priceLm' which later we  can use to plot the model or for prediction.
 with(housingData, plot(
 	SqFt,
  	Price,
@@ -226,6 +226,9 @@ with(housingData, plot(
  	bg = 'grey'
 ))
 abline(priceLm, col='red')
+# It seems that with the use of the linear model, the red line describes the data in the best possible way. Lets have a closer look at the elements behind the linear model
+ summary(priceLm)
+
 	
 </code>
 </div>
