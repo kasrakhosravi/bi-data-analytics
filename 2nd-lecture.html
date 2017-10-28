@@ -32,7 +32,6 @@
 </p>
 	    
 <br />
-<br />
 	    
 <h5 id="welcome-to-github-pages">Exploring One variable 2</h5>   
 	    
@@ -153,6 +152,11 @@ with(housingData, lines(
 	smooth.spline(Price, Offers, df = 5),
 	col = 'red'
 ))
+	
+# (Plot 4): When we have lots of variables and would like to get a general overview about their relationship, we use the following command
+pairs(housingData[c(
+	'Price', 'SqM', 'Bedrooms', 'Bathrooms', 'Offers'
+)])
 	
 </code>
 		
