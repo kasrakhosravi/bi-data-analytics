@@ -153,10 +153,24 @@ with(housingData, lines(
 	col = 'red'
 ))
 	
-# (Plot 4): When we have lots of variables and would like to get a general overview about their relationship, we use the following command
+# (Plot 4): When we have lots of variables and would like to get a general overview about their relationship, we use the following command. Try looking at the graph and see if you can detect each pairs related scatterplot (for instance price ~ bathrooms) and also its reversed version (which means that the location of variables get reversed like bathroom ~price)	
 pairs(housingData[c(
 	'Price', 'SqM', 'Bedrooms', 'Bathrooms', 'Offers'
 )])
+	
+# (Plot 5): Boxplots are not only used for single variables. We can see the spread of one variable compared to another variable using boxplot. Lets try doing that.
+with(housingData, boxplot(
+	Price ~ Neighborhood,
+	horizontal = TRUE,
+	xlab = 'Price',
+	ylab = 'Neighborhood'
+))
+# It is interesting to detect here that neighborhood 'West' has almost the highest (absolute and average) price ranges comapred to the other neighborhoods. That is a really valuable information
+
+# Another tool to use for pairwise relationship is 'correlation' which measures the degree of linear association between two variables. Here is how we do it.
+with(housingData, cor(
+	Price , SqFt
+))
 	
 </code>
 		
