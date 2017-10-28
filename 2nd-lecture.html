@@ -176,7 +176,7 @@ round(cor(
 	housingData[c('Price', 'SqFt', 'Bedrooms')]
 ), 2)
 	
-# We have previously argued why it is not a good idea to use 'cor' for categorical variables and instead we use the 'cross-tabulation' oncept. On the other hand it is possible to use barplots to compare categorical variables.
+# (Plot 7): We have previously argued why it is not a good idea to use 'cor' for categorical variables and instead we use the 'cross-tabulation' oncept. On the other hand it is possible to use barplots to compare categorical variables.
 with(housingData, barplot(
 	height = table(Brick, Neighborhood),
 	legend = c('Other', 'Brick'),
@@ -184,167 +184,68 @@ with(housingData, barplot(
 ))
 	
 </code>
+</div>
+	
+<h5 id="welcome-to-github-pages">Modelling (Quantifying) Relationships Between Pairs of Variables</h5>   
+	    
+<p style='font-size: 14px'>
+	Until now we have explored different ways to explore variables in order to find pattersn, signals and
+	trends. Next step would be you build a model or in other words quantify the relationships we have explored
+	previously. In other words we would like to get the previous data and use it to predict future values. We actually
+	had many questions like that in the finance course. When you want to C if it is rational to buy an asset C; In that
+	scenario you are using history data to make predictions about future. That sounds fun :)
+</p>
+	    
+<div data-datacamp-exercise data-lang="r">
+	      
+<code data-type="pre-exercise-code">
+# This will get executed each time the exercise gets initialized
+
+require(RCurl)
+
+housingData <-read.csv(
+	text=getURL(
+		"https://raw.githubusercontent.com/kasrakhosravi/bi-data-analytics/master/datasets/housingData.tsv"
+	),
+	header=T, 
+	sep = "\t"
+)
+</code>
 		
+<code data-type="sample-code">
+# Lets get the terminology straight. Here We would like to see the effect of SqFt (Independent, Predictor) Variable on the price of the house (Dependent, Goal). For that we craete a simple linear regression model which shows us this effect. Lets do that in R.	
+priceLm <- with(housingData, lm(
+	Price,
+ 	SqFt
+))
+# Here we are calcualting the linear model between these two variables (First is the dependent and the others will be independent). We are storing the model into a variable called 'priceLm' which later we  can use to plot the model or for prediction.
+with(housingData, plot(
+	SqFt,
+ 	Price,
+ 	cex = 2.5,
+ 	pch = 21,
+ 	bg = 'grey'
+))
+	
+</code>
 </div>
       
-<br />
-<br />
-	
-	
-	
-	
-	
-	
-	      
- <h5 id="welcome-to-github-pages">Exploring One variable</h5>   
-	    
-      <p style='font-size: 14px'>
-	It is crucial to examine waht kind of object we are working with in R. It turns out
-	that R offers us a wide range of functions to do that. Lets explore some of them considering
-	that we have already loaded a dataset called 'marketingData'
-      </p>
-	    
-      <div data-datacamp-exercise data-lang="r">
-	      
-	<code data-type="pre-exercise-code">
-		# This will get executed each time the exercise gets initialized
 
-		require(RCurl)
-
-		marketingData <-read.csv(
-		  text=getURL(
-		    "https://raw.githubusercontent.com/kasrakhosravi/catalog-marketing-R/master/DirectMarketing.csv"),
-		  header=T, 
-		  sep = "\t"
-		)
-	</code>
-		
-	<code data-type="sample-code">
-		# We can explore the summary statistics of a single variable in a dataset which will give us values like min and max numbers, mean, median, etc.
-		with(marketingData, summary(Salary))
-		
-		
-		
-		# (1st Plot) Also it is possible to draw a histogram based on a single variable. It shows us a general overview about the distribution of the variable values
-		with(marketingData, hist(Salary))
-		
-		
-		
-		# Imagine that we only need the mean and standard deviation for a single variable in a dataset. R will allow us to get it fast and easy :). It is important to keep in mind that not all datasets distributions are Gaussian (Bell-Like) and therefore different interpretations might be needed
-		with(marketingData, mean(Salary))
-		with(marketingData, sd(Salary))
-		with(marketingData, median(Salary))
-		
-		
-		# It is beneficial to mention that calculating summary statistics is not useful for every type of dataset like categorical or discrete values. For instance in this dataset, Children variable can only have discrete values in order to be meaningful; therefore calculating its mean will not give us much of an important result. What does it mean to have 0.934 children? :)
-		with(marketingData, mean(Children))
-		
-		
-		
-		# (2nd Plot) We have used a histogram before but histogram is not the best option to compare data distribution. Here we are only exploring one variable but it would be nice to have the  to get familiar with the tools we can use in future
-		with(marketingData, plot(density(Salary), xlab='Salary'))
-		
-		
-		
-		# (Plot 3) Lets see waht happens when we bring a histogram and a density plot together. Magic Happens :)
-		par(mfrow = c(1,2))
-		with(marketingData, hist(Salary, probability= TRUE, col='grey75'))
-		with(marketingData, lines(density(Salary), col='red'))
-		
-		
-		
-		# (Plot 4) We are still exploring single values but lets bring few hsitograms with different variables into a single plot and compare them. Remember that we can only draw plots for variables with numeric values
-		par(mfrow = c(1,4))
-		with(marketingData, hist(AmountSpent, col='red'))
-		with(marketingData, hist(Catalogs, col='green'))
-		with(marketingData, hist(Children, col='blue'))
-		with(marketingData, hist(Salary, col='yellow'))
-		
-		
-		
-		# (Plot 5) Sometimes we want to explore a variable in a different format. For instance we have the amount spent in NOk and we want to change it to USD. The following command will help us to do that easily
-		par(mfrow = c(1,2))
-		marketingData$UsdAmountSpent <- with(marketingData, round(AmountSpent * 0.12))
-		with(marketingData, hist(AmountSpent, col='blue'))
-		with(marketingData, hist(UsdAmountSpent, col='grey75'))
-						
-		
-						
-	</code>
-		
-    </div>
-		
+<footer class="site-footer">
+	<span id='footer-author'>
+		Made with <i style='color: red' class="fa fa-heart pulse"></i>
+			By <a href='https://github.com/kasrakhosravi'>Kasra</a>
+	</span>
 	<br />
-	<br />
-		
-	<h5 id="welcome-to-github-pages">Advanced Stuff</h5>   
-	    
-      <p style='font-size: 14px'>
-	Lets explore some advanced stuff. In R we have the ability to create our functions which makes
-	life easier on so many levels. We define a function once and we can use i t many times during 
-        our program. If you think about it all of the other stuff we are using in R are already functions.
-	Function is just like a factory that accepts an input and then gives us an output. Lets create some
-	some functions together.
-      </p>
-	    
-      <div data-datacamp-exercise data-lang="r">
-	      
-	<code data-type="pre-exercise-code">
-		# This will get executed each time the exercise gets initialized
-
-		require(RCurl)
-
-		marketingData <-read.csv(
-		  text=getURL(
-		    "https://raw.githubusercontent.com/kasrakhosravi/catalog-marketing-R/master/DirectMarketing.csv"),
-		  header=T, 
-		  sep = "\t"
-		)
-	</code>
-		
-	<code data-type="sample-code">
-		
-		# Lets start easy. Lets create a function that accepts a data frame and one of its variable, then draws a hsitogram and also draw the density line in the histogram
-		displayHist <- function(data, var) {
-		    with(data, hist(var, probability = TRUE, col='grey75'))
-	       	    with(data, lines(density(var), col='red'))
-	        }
-			       
-			       
-			       
-		# Now lets call the function and pass the input variables and see waht will be the output
-		displayHist(marketingData, marketingData$Salary)
-			       
-			      
-			       
-		# Next we will create a function that accepts a variable and an exchange factor that will transform the variable into a new variable. Then we will draw a histogram  plot based on the new and transformed variable
-     		transformVar <- function(oldVar, newVar, exchFact) {
-    			marketingData$newVar <- with(marketingData, round(exchFact * oldVar))
-    			with(marketingData, hist(newVar, col='grey75'))
-		}
-   
-						
-						
-		# Lets see the result of the function
-       		transformVar(marketingData$AmountSpent, EurAmountSpent, 0.11)
-						
-						
-						
-	</code>
-		
-    </div>
-
-      <footer class="site-footer">
-	      <span id='footer-author'>
-		      Made with <i style='color: red' class="fa fa-heart pulse"></i> By <a href='https://github.com/kasrakhosravi'>Kasra</a>
-	      </span>
-	      <br />
-	      <span id='footer-author'>
-	      Course Instructor: Associate Professor <a href='https://www.bi.no/om-bi/ansatte/institutt-for-samfunnsokonomi/gudmund-hermansen/'>Gudmund Hermansen</a>
-	      </span>
-      </footer>
+	<span id='footer-author'>
+	Course Instructor: Associate Professor 
+		<a href='https://www.bi.no/om-bi/ansatte/institutt-for-samfunnsokonomi/gudmund-hermansen/'>
+			Gudmund Hermansen
+		</a>
+	</span>
+</footer>
 	
-    </section>
+</section>
 
-  </body>
+</body>
 </html>
