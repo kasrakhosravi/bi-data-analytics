@@ -138,7 +138,7 @@ with(housingData, lines(
 	col = 'red'
 ))
 	
-# (Plot 3): But assigning a high value for 'df' for every variable and dataset will not always give us a flexible and reliable model. Check out this one and see if you can reason why the red line is not quite representative of the sample dataset.
+# (Plot 3 & 4): But assigning a high value for 'df' for every variable and dataset will not always give us a flexible and reliable model. Check out this one and see if you can reason why the red line is not quite representative of the sample dataset.
 with(housingData, plot(
 	Price,
 	Offers,
@@ -151,12 +151,12 @@ with(housingData, lines(
 	col = 'red'
 ))
 	
-# (Plot 4): When we have lots of variables and would like to get a general overview about their relationship, we use the following command. Try looking at the graph and see if you can detect each pairs related scatterplot (for instance price ~ bathrooms) and also its reversed version (which means that the location of variables get reversed like bathroom ~price)	
+# (Plot 5): When we have lots of variables and would like to get a general overview about their relationship, we use the following command. Try looking at the graph and see if you can detect each pairs related scatterplot (for instance price ~ bathrooms) and also its reversed version (which means that the location of variables get reversed like bathroom ~price)	
 pairs(housingData[c(
 	'Price', 'SqM', 'Bedrooms', 'Bathrooms', 'Offers'
 )])
 	
-# (Plot 5): Boxplots are not only used for single variables. We can see the spread of one variable compared to another variable using boxplot. Lets try doing that.
+# (Plot 6): Boxplots are not only used for single variables. We can see the spread of one variable compared to another variable using boxplot. Lets try doing that.
 with(housingData, boxplot(
 	Price ~ Neighborhood,
 	horizontal = TRUE,
@@ -178,8 +178,8 @@ round(cor(
 	
 # We have previously argued why it is not a good idea to use 'cor' for categorical variables and instead we use the 'cross-tabulation' oncept. On the other hand it is possible to use barplots to compare categorical variables.
 with(housingData, barplot(
-	table(Brick, Neighborhood),
-	c('Other', 'Brick'),
+	height = table(Brick, Neighborhood),
+	legend = c('Other', 'Brick'),
 	beside = TRUE
 ))
 	
