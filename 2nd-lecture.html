@@ -31,7 +31,6 @@
   In the previous lecture we explored some methods to perform analysis for single variables.
 </p>
 	    
-<br />
 	    
 <h5 id="welcome-to-github-pages">Exploring One variable 2</h5>   
 	    
@@ -171,6 +170,12 @@ with(housingData, boxplot(
 with(housingData, cor(
 	Price , SqFt
 ))
+# As you can see, the 'cor' equals to '0.55'. Lets interpret this number a little bit more. 'cor' measures the strength and direction of the relationship between two variables. Here the direction is positive and direct and the strength of the relationship is above '50%' which can be an indicator of a strong relationship (It depends!). But imagine if the relationship between 'Price' and 'SqFt' was not linear then the interpretation we just made would be wrong. Also, correlation does not imply causation; The increase of SqFt of the house does not cause the price of the house to go higher. We might deal with a positive and strong relationship but in fact the correlation would be spurious (This can happen by coincidence or the presence of a third unseen factor). In the end, it is importnatn to mention that we need to be careful about interpreting correlation between discrete variables since very different datasets can have similar summary statistics which can lead to wrong conclusions.
+
+# Additionally, if we want to measure the correlation across various variables, this is how we do it. Using the 'round' function is just for having a cleaner output in the end and not having to deal with long decimal numbers.
+round(cor(
+	housingData[c('Price', 'SqFt', 'Bedrooms')]
+), 2)
 	
 </code>
 		
