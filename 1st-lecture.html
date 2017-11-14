@@ -171,14 +171,14 @@
 	</code>
 		
 	<code data-type="sample-code">
-	# Lets start easy. Lets create a function that accepts a data frame and one of its variable, then draws a hsitogram and also draw the density line in the histogram
+	# Lets start easy. Lets create a function that accepts a data frame and one of its variable, then draws a histogram and also draw the density line in the histogram
 	displayHist <- function(data, var) {
 		with(data, hist(var, probability = TRUE, col='grey75'))
 		with(data, lines(density(var), col='red'))
 	}
 			       
 			      	       
-	# Now lets call the function and pass the input variables and see waht will be the output
+	# Now lets call the function and pass the input variables and see what will be the output
 	displayHist(marketingData, marketingData$Salary)
 			       
 			      		       
