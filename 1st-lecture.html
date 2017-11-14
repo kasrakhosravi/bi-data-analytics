@@ -171,42 +171,40 @@
 	</code>
 		
 	<code data-type="sample-code">
-		# Lets start easy. Lets create a function that accepts a data frame and one of its variable, then draws a hsitogram and also draw the density line in the histogram
-		displayHist <- function(data, var) {
-			with(data, hist(var, probability = TRUE, col='grey75'))
-			with(data, lines(density(var), col='red'))
-		}
+	# Lets start easy. Lets create a function that accepts a data frame and one of its variable, then draws a hsitogram and also draw the density line in the histogram
+	displayHist <- function(data, var) {
+		with(data, hist(var, probability = TRUE, col='grey75'))
+		with(data, lines(density(var), col='red'))
+	}
 			       
 			      	       
-		# Now lets call the function and pass the input variables and see waht will be the output
-		displayHist(marketingData, marketingData$Salary)
+	# Now lets call the function and pass the input variables and see waht will be the output
+	displayHist(marketingData, marketingData$Salary)
 			       
 			      		       
-		# Next we will create a function that accepts a variable and an exchange factor that will transform the variable into a new variable. Then we will draw a histogram  plot based on the new and transformed variable
-		transformVar <- function(oldVar, newVar, exchFact) {
-			marketingData$newVar <- with(marketingData, round(exchFact * oldVar))
-			with(marketingData, hist(newVar, col='grey75'))
-		}
-   
-									
-		# Lets see the result of the function
-		transformVar(marketingData$AmountSpent, EurAmountSpent, 0.11)
+	# Next we will create a function that accepts a variable and an exchange factor that will transform the variable into a new variable. Then we will draw a histogram  plot based on the new and transformed variable
+	transformVar <- function(oldVar, newVar, exchFact) {
+		marketingData$newVar <- with(marketingData, round(exchFact * oldVar))
+		with(marketingData, hist(newVar, col='grey75'))
+	}
+   								
+	# Lets see the result of the function
+	transformVar(marketingData$AmountSpent, EurAmountSpent, 0.11)
 											
-	</code>
-		
+	</code>	
     </div>
 
-      <footer class="site-footer">
-	      <span id='footer-author'>
-		      Made with <i style='color: red' class="fa fa-heart pulse"></i> By <a href='https://github.com/kasrakhosravi'>Kasra</a>
-	      </span>
-	      <br />
-	      <span id='footer-author'>
-	      Course Instructor: Associate Professor <a href='https://www.bi.no/om-bi/ansatte/institutt-for-samfunnsokonomi/gudmund-hermansen/'>Gudmund Hermansen</a>
-	      </span>
-      </footer>
+	<footer class="site-footer">
+		<span id='footer-author'>
+			Made with <i style='color: red' class="fa fa-heart pulse"></i> By <a href='https://github.com/kasrakhosravi'>Kasra</a>
+		</span>
+		<br />
+		<span id='footer-author'>
+		Course Instructor: Associate Professor <a href='https://www.bi.no/om-bi/ansatte/institutt-for-samfunnsokonomi/gudmund-hermansen/'>Gudmund Hermansen</a>
+		</span>
+	</footer>
 	
-    </section>
+	</section>
 
   </body>
 </html>
