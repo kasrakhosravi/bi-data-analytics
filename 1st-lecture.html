@@ -100,7 +100,7 @@
 		with(marketingData, summary(Salary))
 		
 		
-		# (1st Plot) Also it is possible to draw a histogram based on a single variable. It shows us a general overview about the distribution of the variable values
+		# (1st Plot) Also it is possible to draw a histogram based on a single variable. It shows us a general overview about the distribution of the variable values. Notice that first we have used the 'plot' function and then passed the 'hist' function in it. I assume you can use the 'hist' funciion standalone by itself but it is better to have consistency in our code. Think about it this way: I want to plot something and then I pass a rule to show how I want my plot to be drawn (that rule can be hist or density or somethingelse)
 		with(marketingData, plot(hist(Salary)))
 		
 		
@@ -114,17 +114,14 @@
 		with(marketingData, mean(Children))
 		
 		
-		
-		# (2nd Plot) We have used a histogram before but histogram is not the best option to compare data distribution. We have the option to use density plots which is great for comparing with other values (Even though we are only exploring one variable and not multiple variables)
+		# (2nd Plot) We have used a histogram before but histogram is not the best option to compare data distribution. We have the option to use density plots which is great for comparing with other values (Even though we are only exploring one variable and not multiple variables here)
 		with(marketingData, plot(density(Salary), xlab='Salary'))
 		
 		
-		
-		# (Plot 3) Lets see waht happens when we bring a histogram and a density plot together. Magic Happens :)
+		# (Plot 3) Lets see what happens when we bring a histogram and a density plot together. Magic Happens :)
 		par(mfrow = c(1,2))
-		with(marketingData, hist(Salary, probability= TRUE, col='grey75'))
+		with(marketingData, plot(hist(Salary, probability= TRUE, col='grey75')))
 		with(marketingData, lines(density(Salary), col='red'))
-		
 		
 		
 		# (Plot 4) We are still exploring single values but lets bring few hsitograms with different variables into a single plot and compare them. Remember that we can only draw plots for variables with numeric values
@@ -133,7 +130,6 @@
 		with(marketingData, hist(Catalogs, col='green'))
 		with(marketingData, hist(Children, col='blue'))
 		with(marketingData, hist(Salary, col='yellow'))
-		
 		
 		
 		# (Plot 5) Sometimes we want to explore a variable in a different format. For instance we have the amount spent in NOk and we want to change it to USD. The following command will help us to do that easily
