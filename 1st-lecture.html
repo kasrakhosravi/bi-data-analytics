@@ -71,16 +71,13 @@
 	</code>
 		
     </div>
-      
-    <br />
-    <br />
-	      
- <h5 id="welcome-to-github-pages">Exploring One variable</h5>   
+      	      
+ 		<h5 id="welcome-to-github-pages">Exploring One variable</h5>   
 	    
       <p style='font-size: 14px'>
-	It is crucial to examine waht kind of object we are working with in R. It turns out
-	that R offers us a wide range of functions to do that. Lets explore some of them considering
-	that we have already loaded a dataset called 'marketingData'
+				The dataset that we have consists of different variables like 'Salary' or 'Children'. First, we will
+				explore the characteristics of these variables in islolation without considering their relationship
+				with other variables.
       </p>
 	    
       <div data-datacamp-exercise data-lang="r">
@@ -103,10 +100,8 @@
 		with(marketingData, summary(Salary))
 		
 		
-		
 		# (1st Plot) Also it is possible to draw a histogram based on a single variable. It shows us a general overview about the distribution of the variable values
 		with(marketingData, hist(Salary))
-		
 		
 		
 		# Imagine that we only need the mean and standard deviation for a single variable in a dataset. R will allow us to get it fast and easy :). It is important to keep in mind that not all datasets distributions are Gaussian (Bell-Like) and therefore different interpretations might be needed
