@@ -101,10 +101,10 @@
 		
 		
 		# (1st Plot) Also it is possible to draw a histogram based on a single variable. It shows us a general overview about the distribution of the variable values
-		with(marketingData, hist(Salary))
+		with(marketingData, plot(hist(Salary)))
 		
 		
-		# Imagine that we only need the mean and standard deviation for a single variable in a dataset. R will allow us to get it fast and easy :). It is important to keep in mind that not all datasets distributions are Gaussian (Bell-Like) and therefore different interpretations might be needed
+		# Imagine that we only need the mean and standard deviation for a single variable in a dataset. R will allow us to get it fast and easy :).
 		with(marketingData, mean(Salary))
 		with(marketingData, sd(Salary))
 		with(marketingData, median(Salary))
@@ -115,7 +115,7 @@
 		
 		
 		
-		# (2nd Plot) We have used a histogram before but histogram is not the best option to compare data distribution. Here we are only exploring one variable but it would be nice to have the  to get familiar with the tools we can use in future
+		# (2nd Plot) We have used a histogram before but histogram is not the best option to compare data distribution. We have the option to use density plots which is great for comparing with other values (Even though we are only exploring one variable and not multiple variables)
 		with(marketingData, plot(density(Salary), xlab='Salary'))
 		
 		
