@@ -186,10 +186,11 @@
 	transformVar <- function(oldVar, newVar, exchFact) {
 		marketingData$newVar <- with(marketingData, round(exchFact * oldVar))
 		with(marketingData, hist(newVar, col='grey75'))
+		summary(newVar)
 	}
    								
 	# Lets see the result of the function
-	transformVar(marketingData$AmountSpent, EurAmountSpent, 0.11)
+	transformVar(marketingData$AmountSpent, marketingData$EurAmountSpent, 0.11)
 											
 	</code>	
     </div>
