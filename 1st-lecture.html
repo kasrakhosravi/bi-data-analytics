@@ -144,17 +144,15 @@
 		
     </div>
 		
-	<br />
-	<br />
 		
 	<h5 id="welcome-to-github-pages">Advanced Stuff</h5>   
 	    
       <p style='font-size: 14px'>
-	Lets explore some advanced stuff. In R we have the ability to create our functions which makes
-	life easier on so many levels. We define a function once and we can use i t many times during 
-        our program. If you think about it all of the other stuff we are using in R are already functions.
-	Function is just like a factory that accepts an input and then gives us an output. Lets create some
-	some functions together.
+				Lets explore some advanced stuff. In R we have the ability to create our functions which makes
+				life easier on so many levels. We define a function once and we can use it many times during 
+				our program. If you think about it, all of the other stuff we are using in R are already functions.
+				Function is just like a factory that accepts an input and then gives us an output. Lets create some
+				functions together.
       </p>
 	    
       <div data-datacamp-exercise data-lang="r">
@@ -173,33 +171,27 @@
 	</code>
 		
 	<code data-type="sample-code">
-		
 		# Lets start easy. Lets create a function that accepts a data frame and one of its variable, then draws a hsitogram and also draw the density line in the histogram
 		displayHist <- function(data, var) {
-		    with(data, hist(var, probability = TRUE, col='grey75'))
-	       	    with(data, lines(density(var), col='red'))
-	        }
+			with(data, hist(var, probability = TRUE, col='grey75'))
+			with(data, lines(density(var), col='red'))
+		}
 			       
-			       
-			       
+			      	       
 		# Now lets call the function and pass the input variables and see waht will be the output
 		displayHist(marketingData, marketingData$Salary)
 			       
-			      
-			       
+			      		       
 		# Next we will create a function that accepts a variable and an exchange factor that will transform the variable into a new variable. Then we will draw a histogram  plot based on the new and transformed variable
-     		transformVar <- function(oldVar, newVar, exchFact) {
-    			marketingData$newVar <- with(marketingData, round(exchFact * oldVar))
-    			with(marketingData, hist(newVar, col='grey75'))
+		transformVar <- function(oldVar, newVar, exchFact) {
+			marketingData$newVar <- with(marketingData, round(exchFact * oldVar))
+			with(marketingData, hist(newVar, col='grey75'))
 		}
    
-						
-						
+									
 		# Lets see the result of the function
-       		transformVar(marketingData$AmountSpent, EurAmountSpent, 0.11)
-						
-						
-						
+		transformVar(marketingData$AmountSpent, EurAmountSpent, 0.11)
+											
 	</code>
 		
     </div>
