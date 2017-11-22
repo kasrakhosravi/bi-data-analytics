@@ -100,8 +100,12 @@ summary(priceLm)
 						 
 summary(priceLm)
 						 
-# If you check the Coefficient section, you see a bunch of variables with few columns. If we divide the value of 'Estimate' column by 'Std. Err' for each variable, we get to a value which we call signal to noise ration. This value helps us to see how significant a variable is compared to its noise.
-									 
+# If you check the Coefficient section, you see a bunch of variables with few columns. If we divide the value of 'Estimate' column by 'Std. Err' for each variable, we get to a value which we call signal to noise ration. This value helps us to see how significant a variable is compared to its noise. For instance the Signal to Noise ratio 'SqM' is '4.897'. But is it high or low? It seems that it is the highest signal to noise ratio but does it mean that other variable are not important. That is when p-value comes in. p-value puts the value of 'signal-to-noise' ration in a probabilistic context. p-value measures the probability that a predictor has no relationship with the response. So it is clear that the lower the p-value, the higher significance of it. (As a general rule, it should be lower that 5%)
+						 
+# Another way to understand the importance of a predictor is to see how uncertain it is. For instance in the linear model above, it shows that addin one bedrooms adds on average 1200 to the price of the house but how reliable is this information. One way to make sure about certainity is to explore the confidence interval. Confidence interval tells us that for example by adding one more bedroom to the house, what kind of price range we should be expecting.
+						 
+confint(priceLm, level=0.95)
+						 							 
 </code>
 		
 </div>
