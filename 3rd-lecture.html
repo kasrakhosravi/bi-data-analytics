@@ -59,7 +59,11 @@ housingData <-read.csv(
 <code data-type="sample-code">
 # As always, lets get a summary and overview of our dataset to see what we are workign with.
 summary(housingData)
-View(housingData)
+
+As you can see, we have a varialbe called 'SqFt'. So as a review, lets convert this to 'SqM'. Do not forget that you also can sue the 'Transformer Function' in the first lecture (A little bit more advanced but will make your life much easier if you have to do alot of transformation in your dataset).
+housingData$SqM <- with(housingData, round(0.092903 * SqFt))
+summary(housingData)
+									 
 </code>
 		
 </div>
