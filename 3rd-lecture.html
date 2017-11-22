@@ -64,6 +64,16 @@ summary(housingData)
 housingData$SqM <- with(housingData, round(0.092903 * SqFt))
 summary(housingData)
 									 
+# Now, it comes down to predicting. Imagine that there is a house that its information is not incorporated in our dataset and we only know its 'SqM' which is 182. Based on this, we want to predict its price (related to other houses in our dataset)
+									 
+priceLm <- with(housingData, lm(
+	Price ~ SqM
+))
+
+house_182 <- data.frame('SqM' = 182)
+
+predict(priceLm, newdata = house_182)						
+									 
 </code>
 		
 </div>
