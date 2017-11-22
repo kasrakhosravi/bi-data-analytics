@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	
+<head>	
+<title>BI Data Analytics</title>
+
+<meta charset="UTF-8">
+<meta name="description" content="BI Data Analytics"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#157878">
+  
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/aaa/assets/css/style.css?v=de65868e5d6a8010907d8f0aa653e21466b700a1">
+<link rel="stylesheet" href="/style.css">
+<script src="https://cdn.datacamp.com/datacamp-light-latest.min.js"></script>
+</head>
+	
+<body>
+
+<section class="page-header">
+  <h1 class="project-name">BI Data Analytics</h1>
+  <h2 class="project-tagline"></h2>
+  <a href="https://kasrakhosravi.github.io/bi-data-analytics" class="btn">Homepage</a>
+</section>
+
+<section class="main-content">
+	    
+<h4 id="welcome-to-github-pages">Second Lecture</h4>  
+	    
+<p style='font-size: 14px'>
+  In the previous lecture we explored some methods to perform analysis for single variables.
+</p>
+	    
+	    
+<h5 id="welcome-to-github-pages">Exploring One variable 2</h5>   
+	    
+<p style='font-size: 14px'>
+  In the previous lecture we explored some methods to perform analysis for single variables. Lets continue that
+  work by analysing categorical single variables. Logically, it does not make sense to compute summary statistics
+  (like mean or median for these types of variables; But we have other options like frequency tables and barplots.
+  At the end we also try to learn some stuff about boxplot which is a great tool to give us a
+  quick glimpse into the data and shows us the spread of the data.
+</p>
+	    
+<div data-datacamp-exercise data-lang="r">
+	      
+<code data-type="pre-exercise-code">
+# This will get executed each time the exercise gets initialized
+
+require(RCurl)
+
+housingData <-read.csv(
+	text=getURL(
+		"https://raw.githubusercontent.com/kasrakhosravi/bi-data-analytics/master/datasets/housingData.tsv"
+	),
+	header=T, 
+	sep = "\t"
+)
+</code>
+		
+<code data-type="sample-code">
+# This command will give us a general summary of a single categorical variable. There is actually two ways to achieve this for categorical data.
+with(housingData, summary(Brick))
+with(housingData, table(Neighborhood))
+	
+	
+# To get a sense of the percentage distribution of the sample data across different variable values, we can use the following function.
+with(housingData, round(
+	prop.table(table(Brick)),2
+))
+#Actually, since it does not make much sense to calculate 'cor' or the linear relationship between categorical variables. Instead we use the cross-tabulation which shows us the number of samples in different subsets of categories
+	
+	
+# In my opinion, this is a really interesting analysis since it gives us the spread of samples across different categories and we can get a sense if we have chosen a balanced data sample for our study.
+	
+	
+# (Plot 1): Another tool for analysing a single categorical variable is to use a barplot. It gives us the same information as the 'table' function above but it displays it more visually
+with(housingData, barplot(
+	table(Neighborhood), 
+	main = 'Neighborhood'
+))
+	
+	
+# Some of you might ask why we have used something like 'table(sth)' after the 'barplot()' functuin. It seemed that we did not have to pass such an input to other types of functions like 'plot()'? Well, the simple explanation is that this function need a vector or matrix of values describing the bars which make up the plot and that is exactly what we are doign with 'table(sth)'
+
+
+# (Plot 2): Another tool to use for single variable analysis is a boxplot which can be used for numerical variables. This tool is quite interesting because it shows us the quartiles of distribtuion and tells us where msot of the data is densed. The squre in the middle is used for this purpose which shows us the distance between first and third quartile.
+with(housingData, boxplot(
+	Price,
+	horizontal = TRUE,
+	xlab = 'Price'
+))
+</code>
+		
+</div>
+      
+	
+<h5 id="welcome-to-github-pages">Exploring Pairwise Relationship</h5>   
+	    
+<p style='font-size: 14px'>
+	We have explored single variables and used tools like histograms, boxplots, barplots and numercial summaries
+	to get more familiar with the dataset. Now lets move on to analysing pairwise relationships. Our interest for
+	this part is to understand the relationship between variables. For isntance is there a relationship between the
+	price of the house and the number of bathrooms? Remember that here we are just exploring variables and it is in the
+	model phase that we quantify the relationships but analysing the relationship at this stage is useful to detect anamolies,
+	errors, outliers, subgroups, etc. which an guide the modellig phase.
+</p>
+	    
+<div data-datacamp-exercise data-lang="r">
+	      
+<code data-type="pre-exercise-code">
+# This will get executed each time the exercise gets initialized
+
+require(RCurl)
+
+housingData <-read.csv(
+	text=getURL(
+		"https://raw.githubusercontent.com/kasrakhosravi/bi-data-analytics/master/datasets/housingData.tsv"
+	),
+	header=T, 
+	sep = "\t"
+)
+</code>
+		
+<code data-type="sample-code">
+# (Plot 1): A typical tool to use to see the relationship between two variables is a scatterplot
+with(housingData, plot(
+	SqM,
+	Price,
+	cex = 2.5,
+	pch = 21,
+	bg = 'grey'
+))
+	
+# (Plot 2): Next we try to include a smoothening curve into the data. We do that by using the 'smooth.spline()' function and pass it into the 'lines()' function in order to draw it. You can also see that we assign the 'df = 5' to give the smoothening curve a higher degree of freedom for more flexibility. Try assigning lower and higher values for the 'df' parameter to see what happens. It seems that lower 'df' will follow the sample data trend less strictly and a higher value is more flexibile in following its trend.
+with(housingData, lines(
+	smooth.spline(SqM, Price, df = 5),
+	col = 'red'
+))
+	
+# (Plot 3 & 4): But assigning a high value for 'df' for every variable and dataset will not always give us a flexible and reliable model. Check out this one and see if you can reason why the red line is not quite representative of the sample dataset.
+with(housingData, plot(
+	Price,
+	Offers,
+	cex = 2.5,
+	pch = 21,
+	bg = 'grey'
+))
+with(housingData, lines(
+	smooth.spline(Price, Offers, df = 5),
+	col = 'red'
+))
+	
+# (Plot 5): When we have lots of variables and would like to get a general overview about their relationship, we use the following command. Try looking at the graph and see if you can detect each pairs related scatterplot (for instance price ~ bathrooms) and also its reversed version (which means that the location of variables get reversed like bathroom ~price)	
+pairs(housingData[c(
+	'Price', 'SqM', 'Bedrooms', 'Bathrooms', 'Offers'
+)])
+	
+# (Plot 6): Boxplots are not only used for single variables. We can see the spread of one variable compared to another variable using boxplot. Lets try doing that.
+with(housingData, boxplot(
+	Price ~ Neighborhood,
+	horizontal = TRUE,
+	xlab = 'Price',
+	ylab = 'Neighborhood'
+))
+# It is interesting to detect here that neighborhood 'West' has almost the highest (absolute and average) price ranges comapred to the other neighborhoods. That is a really valuable information
+
+# Another tool to use for pairwise relationship is 'correlation' which measures the degree of linear association between two variables. Here is how we do it.
+with(housingData, cor(
+	Price , SqFt
+))
+# As you can see, the 'cor' equals to '0.55'. Lets interpret this number a little bit more. 'cor' measures the strength and direction of the relationship between two variables. Here the direction is positive and direct and the strength of the relationship is above '50%' which can be an indicator of a strong relationship (It depends!). But imagine if the relationship between 'Price' and 'SqFt' was not linear then the interpretation we just made would be wrong. Also, correlation does not imply causation; The increase of SqFt of the house does not cause the price of the house to go higher. We might deal with a positive and strong relationship but in fact the correlation would be spurious (This can happen by coincidence or the presence of a third unseen factor). In the end, it is importnatn to mention that we need to be careful about interpreting correlation between discrete variables since very different datasets can have similar summary statistics which can lead to wrong conclusions.
+
+# Additionally, if we want to measure the correlation across various variables, this is how we do it. Using the 'round' function is just for having a cleaner output in the end and not having to deal with long decimal numbers.
+round(cor(
+	housingData[c('Price', 'SqFt', 'Bedrooms')]
+), 2)
+	
+# (Plot 7): We have previously argued why it is not a good idea to use 'cor' for categorical variables and instead we use the 'cross-tabulation' oncept. On the other hand it is possible to use barplots to compare categorical variables.
+with(housingData, barplot(
+	height = table(Brick, Neighborhood),
+	legend = c('Other', 'Brick'),
+	beside = TRUE
+))
+	
+</code>
+</div>
+	
+<h5 id="welcome-to-github-pages">Modelling (Quantifying) Relationships Between Pairs of Variables</h5>   
+	    
+<p style='font-size: 14px'>
+	Until now we have explored different ways to explore variables in order to find pattersn, signals and
+	trends. Next step would be you build a model or in other words quantify the relationships we have explored
+	previously. In other words we would like to get the previous data and use it to predict future values. We actually
+	had many questions like that in the finance course. When you want to C if it is rational to buy an asset C; In that
+	scenario you are using history data to make predictions about future. That sounds fun :)
+</p>
+	    
+<div data-datacamp-exercise data-lang="r">
+	      
+<code data-type="pre-exercise-code">
+# This will get executed each time the exercise gets initialized
+
+require(RCurl)
+
+housingData <-read.csv(
+	text=getURL(
+		"https://raw.githubusercontent.com/kasrakhosravi/bi-data-analytics/master/datasets/housingData.tsv"
+	),
+	header=T, 
+	sep = "\t"
+)
+</code>
+		
+<code data-type="sample-code">
+# Lets get the terminology straight. Here We would like to see the effect of SqFt (Independent, Predictor) Variable on the price of the house (Dependent, Goal). For that we craete a simple linear regression model which shows us this effect. Lets do that in R.	
+priceLm <- with(housingData, lm(
+	Price ~ SqFt
+))
+# (Plot 1 & 2): Here we are calcualting the linear model between these two variables (First is the dependent and the others will be independent). We are storing the model into a variable called 'priceLm' which later we  can use to plot the model or for prediction.
+with(housingData, plot(
+	SqFt,
+ 	Price,
+ 	cex = 2.5,
+ 	pch = 21,
+ 	bg = 'grey'
+))
+abline(priceLm, col='red')
+# It seems that with the use of the linear model, the red line describes the data in the best possible way. Lets have a closer look at the elements behind the linear model
+ summary(priceLm)
+
+	
+</code>
+</div>
+      
+
+<footer class="site-footer">
+	<span id='footer-author'>
+		Made with <i style='color: red' class="fa fa-heart pulse"></i>
+			By <a href='https://github.com/kasrakhosravi'>Kasra</a>
+	</span>
+	<br />
+	<span id='footer-author'>
+	Course Instructor: Associate Professor 
+		<a href='https://www.bi.no/om-bi/ansatte/institutt-for-samfunnsokonomi/gudmund-hermansen/'>
+			Gudmund Hermansen
+		</a>
+	</span>
+</footer>
+	
+</section>
+
+</body>
+</html>
