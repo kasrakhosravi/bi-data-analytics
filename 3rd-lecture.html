@@ -76,8 +76,19 @@ predict(priceLm, newdata = house_182)
 						 
 # It is important to mention that the above number we got as the predicted value is not certain. Therefore, it is wise to get a range of possible values. If the range of predicted values is wide, it means that soemthing is either wrong with our data, model or both because the model could not be sure about a narrow and specific set of values.
 predict(priceLm, newdata = house_182, interval='prediction')
-# This interval is quite wide and it means that we need to be cautious if we want to have strong assumptions about it.
+# This interval is quite wide [81000, 170000] and it means that we need to be cautious if we want to have strong assumptions about it.
 						 
+# Not lets explore the 'priceLm' in more details. This is our linear regression model and we are predicting based on it.
+summary(priceLm)
+# In the bottom of the analysis, it shows a section called 'Multiple R-Squared'. You can define R Squared as a metric that evaluates the regression model's quality or in other words how it tracks data. The thing is that there is no ultimate answer for a R Squared and it really depends on a context. Here we have a '0.39', but it is too soon to make any judgements now. Lets add some more predictors to the regression model and see what happend to the R Squared value.
+
+priceLm <- with(housingData, lm(
+	Price ~ SqM + Bedrooms
+))
+	
+predict(priceLm, newdata = house_182)	
+
+
  
 									 
 </code>
