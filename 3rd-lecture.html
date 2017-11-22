@@ -72,7 +72,13 @@ priceLm <- with(housingData, lm(
 
 house_182 <- data.frame('SqM' = 182)
 
-predict(priceLm, newdata = house_182)						
+predict(priceLm, newdata = house_182)	
+						 
+# It is important to mention that the above number we got as the predicted value is not certain. Therefore, it is wise to get a range of possible values. If the range of predicted values is wide, it means that soemthing is either wrong with our data, model or both because the model could not be sure about a narrow and specific set of values.
+predict(priceLm, newdata = house_182, interval='prediction')
+# This interval is quite wide and it means that we need to be cautious if we want to have strong assumptions about it.
+						 
+ 
 									 
 </code>
 		
