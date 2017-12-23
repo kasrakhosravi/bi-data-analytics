@@ -1,0 +1,166 @@
+body {
+    font-size: 15px;
+    font-family: 'Lato', sans-serif;
+}
+
+h1 {
+    font-size: 2.5em;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+h3 {
+    font-size: 1.5em
+}
+
+p {
+    font-size: 1em;
+}
+
+.marketing-button {
+    background-color: #048238;
+    border: 0;
+    border-radius: 0.2em;
+    color: #ffffff;
+    font-size: 1.125em;
+    padding: 0.77778em 1.66667em;
+    margin-right: 0.5em;
+}
+
+.marketing-button:active {
+    background-color: #0db251;
+}
+
+.marketing-button:focus {
+    background-color: #0db251;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.marketing-button:hover {
+    background-color: #0db251;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.header {
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0.7)
+        ),
+        url(../images/backgrounds/header-bg.jpg)
+        center;
+    background-size: cover;
+    height: 550px;
+}
+
+.header .navbar {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.header .navbar-header {
+    float: left;
+}
+
+.header .navbar-logo {
+    height: 50px;
+}
+
+.header .navbar-nav > li > a {
+    color: #a9a9a9;
+    font-size: 1.125em;
+}
+
+.header .navbar-nav > li > a:focus {
+    color: #ffffff;
+    background-color: transparent;
+}
+
+.header .navbar-nav > li > a:hover {
+    color: #ffffff;
+    background-color: transparent;
+}
+
+.header .intro {
+    padding-top: 70px;
+}
+
+.header .intro-text {
+    color: #ffffff;
+    margin-bottom: 0.75em;
+}
+
+.main .main-content {
+    padding-top: 1.5em;
+}
+
+.main .main-asset {
+    float: right;
+}
+
+.main .main-heading {
+    margin-bottom: 0.5em;
+}
+
+.main .ravaj-theme-preview {
+    margin-top: -200px;
+}
+
+.main .ravaj-app-preview {
+    width: 608px;
+}
+
+.signup {
+    background-color: #048238;
+    height: 235px;
+    text-align: center;
+}
+
+.signup .signup-form {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.signup-heading {
+    color: #ffffff;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.team {
+    background:
+        linear-gradient(
+                rgba(0, 0, 0, 0.7),
+                rgba(0, 0, 0, 0.7)
+        ),
+        url(../images/backgrounds/team-bg.jpg)
+        center;
+    height: 484px;
+    line-height: 484px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.team-heading {
+    font-size: 2em;
+    color: #ffffff;
+}
+
+.footer {
+    text-align: center;
+}
+
+.footer .footer-logo {
+    margin-top: 20px;
+    height: 69px;
+    width: 169px;
+}
+
+.footer-description {
+    margin-top: 10px;
+}
