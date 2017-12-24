@@ -61,29 +61,20 @@
       <section class="main-content">
         <div class="list-group">
 		
-          <a href="1st-lecture.html" class="list-group-item list-group-item-action">
-		1st Lecture
+          <a href="1st-lab.html" class="list-group-item list-group-item-action">
+		1st Lab
           </a>
-	  <a href="2nd-lecture.html" class="list-group-item list-group-item-action">
-		2nd Lecture
+	  <a href="2nd--lab.html" class="list-group-item list-group-item-action">
+		2nd Lab
           </a>
-	  <a href="3rd-lecture.html" class="list-group-item list-group-item-action">
-		3rd Lecture
+	  <a href="3rd-lab.html" class="list-group-item list-group-item-action">
+		3rd Lab
           </a>
-	  <a href="4th-lecture.html" class="list-group-item list-group-item-action">
-		4th Lecture
+	  <a href="4th-lab.html" class="list-group-item list-group-item-action">
+		4th Lab
           </a>
-	  <a href="5th-lecture.html" class="list-group-item list-group-item-action">
-		5th Lecture
-          </a>
-	  <a href="6th-lecture.html" class="list-group-item list-group-item-action">
-		6th Lecture
-          </a>
-	  <a href="7th-lecture.html" class="list-group-item list-group-item-action">
-		7th Lecture
-          </a>
-	  <a href="8th-lecture.html" class="list-group-item list-group-item-action">
-		8th Lecture
+	  <a href="5th-lab.html" class="list-group-item list-group-item-action">
+		5th Lab
           </a>
 		
         </div>
