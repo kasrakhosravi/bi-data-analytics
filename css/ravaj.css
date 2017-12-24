@@ -51,7 +51,7 @@ p {
             rgba(0, 0, 0, 0.7),
             rgba(0, 0, 0, 0.7)
         ),
-        url(../images/backgrounds/header-bg.jpg)
+        url('header-bg.jpg')
         center;
     background-size: cover;
     height: 550px;
